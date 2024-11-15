@@ -41,5 +41,9 @@ class Post(PostBase):
 
 
 class FilterPosts(BaseModel):
-    title: Union[str, None] = None
-    # TODO:  add more filters
+    title: Optional[str] = None
+    section_id: Optional[int] = None
+    tags: Optional[list[str]] = None
+    created_at_gt: Optional[datetime] = None
+    created_at_lt: Optional[datetime] = None
+    

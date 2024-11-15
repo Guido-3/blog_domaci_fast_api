@@ -8,12 +8,12 @@ router = APIRouter(prefix="/sections", tags=["sections"])
 
 
 @router.get("", response_model=list[Section])
-def list_sections(db: db):
+def list_sections(db: db): # type: ignore
     return sections.list_sections(db)
 
 
 @router.get("/{section_id}", response_model=Section)
-def get_section(section_id: int, db: db):
+def get_section(section_id: int, db: db): # type: ignore
     try:
         return sections.get_section(db, section_id)
     except DbnotFoundException:
@@ -21,7 +21,7 @@ def get_section(section_id: int, db: db):
 
 
 @router.post("", response_model=Section, status_code=201)
-def create_section(section: SectionCreate, db: db):
+def create_section(section: SectionCreate, db: db): # type: ignore
     section = sections.create_section(db, section)
     db.commit()
     db.refresh(section)
@@ -29,7 +29,7 @@ def create_section(section: SectionCreate, db: db):
 
 
 @router.put("/{section_id}", response_model=Section)
-def update_section(section_id: int, section: SectionUpdate, db: db):
+def update_section(section_id: int, section: SectionUpdate, db: db): # type: ignore
     try:
         section = sections.update_section(db, section_id, section)
         db.commit()
@@ -39,7 +39,7 @@ def update_section(section_id: int, section: SectionUpdate, db: db):
 
 
 @router.delete("/{section_id}", status_code=204)
-def delete_section(section_id: int, db: db):
+def delete_section(section_id: int, db: db): # type: ignore
     try:
         sections.delete_section(db, section_id)
         db.commit()
