@@ -10,6 +10,7 @@ class PostBase(BaseModel):
     title: Annotated[str, Field(..., max_length=60, min_length=6)]
     body: str
     tags: list[str] = []
+    photo_path: Optional[str] = None
 
 
 class PostCreate(PostBase):
@@ -36,7 +37,7 @@ class Post(PostBase):
     updated_at: Union[datetime, None] = None
     section: Section
     tags: list[Tag] = []
-
+    
     model_config = ConfigDict(from_attributes=True)
 
 
